@@ -11,9 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
+  final emailcontroller = TextEditingController();
   final passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,21 +29,21 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 50),
           Text(
-            'You\'ve been missed. Log In Now.',
+            'You\'ve been missed. Log in now.',
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
           const SizedBox(height: 50),
           MyTextfield(
-            hintText: 'Email',
-            controller: emailController,
+            controller: emailcontroller,
+            hintText: 'Username',
             obscureText: false,
           ),
           const SizedBox(height: 10),
           MyTextfield(
+            controller: emailcontroller,
             hintText: 'Password',
-            controller: passwordController,
             obscureText: true,
           ),
           const SizedBox(height: 10),
@@ -72,22 +71,23 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Divider(
                     thickness: 0.5,
-                    color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
-                Text(
-                  'Or continue with',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Text(
+                    'Or continue with',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: Divider(
                     thickness: 0.5,
-                    color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
               ],
@@ -97,9 +97,15 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SquareTile(imagePath: 'images/1.png', onTap: () {}),
+              SquareTile(
+                imagePath: 'images/1.png',
+                onTap: () {},
+              ),
               const SizedBox(width: 10),
-              SquareTile(imagePath: 'images/2.png', onTap: () {}),
+              SquareTile(
+                imagePath: 'images/2.png',
+                onTap: () {},
+              ),
             ],
           ),
           const SizedBox(height: 50),
@@ -114,9 +120,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const Text(
                 'Register Now',
-                style:
-                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-              ),
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
             ],
           )
         ],
