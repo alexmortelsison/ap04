@@ -1,13 +1,10 @@
 import 'package:ap04/components/my_button.dart';
-import 'package:ap04/components/my_textfield.dart';
+import 'package:ap04/components/my_textfied.dart';
 import 'package:ap04/components/square_tile.dart';
-import 'package:ap04/services/auth_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  final void Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -16,40 +13,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  void signUserIn() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-
-      showErrorMessage(e.code);
-    }
-  }
-
-  void showErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: Text(message),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,19 +31,19 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 50),
             Text(
-              'You\'ve been missed. Log in now.',
+              'You\'ve been missed. Login Now.',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
             ),
             const SizedBox(height: 50),
-            MyTextfield(
+            MyTextfied(
               controller: emailController,
               obscureText: false,
               hintText: 'Email',
             ),
             const SizedBox(height: 10),
-            MyTextfield(
+            MyTextfied(
               controller: passwordController,
               obscureText: true,
               hintText: 'Password',
@@ -101,10 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(height: 50),
-            MyButton(
-              onTap: signUserIn,
-              text: 'Sign In',
-            ),
+            MyButton(onTap: () {}, text: 'Sign In'),
             const SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -139,12 +99,10 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SquareTile(
-                  onTap: () {
-                    AuthService().signInWithGoogle();
-                  },
+                  onTap: () {},
                   imagePath: 'images/1.png',
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10.0),
                 SquareTile(
                   onTap: () {},
                   imagePath: 'images/2.png',
@@ -161,16 +119,13 @@ class _LoginPageState extends State<LoginPage> {
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
-                GestureDetector(
-                  onTap: widget.onTap,
-                  child: const Text(
-                    'Register Now',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const Text(
+                  'Register Now',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
+                )
               ],
             )
           ],
