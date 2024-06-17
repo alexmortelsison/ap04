@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MyTextfied extends StatelessWidget {
+class MyTextfield extends StatelessWidget {
   final TextEditingController? controller;
   final bool obscureText;
   final String hintText;
-  const MyTextfied({
+  const MyTextfield({
     super.key,
     required this.controller,
     required this.obscureText,
@@ -23,8 +23,8 @@ class MyTextfied extends StatelessWidget {
           hintStyle: TextStyle(
             color: Theme.of(context).colorScheme.inverseSurface,
           ),
-          fillColor: Theme.of(context).colorScheme.secondary,
           filled: true,
+          fillColor: Theme.of(context).colorScheme.secondary,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
